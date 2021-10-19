@@ -1,0 +1,15 @@
+version: "3.9"
+   
+services:
+  web:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    command:  gunicorn testsite.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ./api:/home/app/web
+    expose:
+      - 8000
+    depends_on:
+    env_file:
+      - ./.env.prod
