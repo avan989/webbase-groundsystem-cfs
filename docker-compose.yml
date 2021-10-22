@@ -1,15 +1,37 @@
 version: "3.9"
    
 services:
-  web:
+  backend:
+    container_name: backend
     build:
       context: ./api
       dockerfile: Dockerfile
-    command:  gunicorn testsite.wsgi:application --bind 0.0.0.0:8000
+    command: daphne -b 0.0.0.0 -p 8000 backend.asgi:application
     volumes:
-      - ./api:/home/app/web
-    expose:
-      - 8000
+      - ./api:/home/app/api
+    ports:
+      - "8000:8000"
     depends_on:
-    env_file:
-      - ./.env.prod
+      - redis
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    command: yarn start
+    #command: tail -f /dev/null
+    volumes: 
+      - ./frontend:/home/app/frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  redis:
+    image: "redis:alpine"
+    #command: redis-server --requirepass sOmE_sEcUrE_pAsS
+    ports:
+      - "6379:6379"
+    # add config later
+

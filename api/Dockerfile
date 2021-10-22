@@ -8,20 +8,10 @@ FROM python:3.7.0-alpine as builder
 # set work directory
 WORKDIR /usr/src/app
 
-# set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-RUN pip install --upgrade pip
-
 # lint, coding style check against PEP8, programming errors, and cyclomatic complexity.
 RUN pip install flake8
 COPY . /usr/src/app/
 RUN flake8 --ignore=E501,F401 .
-
-# install dependencies
-COPY ./requirements.txt .
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
 
 #########
 # FINAL #
@@ -30,8 +20,9 @@ RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requir
 # pull official base image
 FROM python:3.7.0-alpine
 
-# For Pillow
-RUN apk add --no-cache jpeg-dev zlib-dev
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
 # create directory for the app user
 RUN mkdir -p /home/app/
@@ -42,17 +33,20 @@ RUN mkdir -p /home/app/media_cdn/
 
 # create the appropriate directories
 ENV HOME=/home/app
-ENV APP_HOME=$HOME/web
+ENV APP_HOME=$HOME/api
 
+RUN mkdir -p $HOME/static_cdn/
+RUN mkdir -p $HOME/media_cdn/
 RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 
-# install dependencies
-RUN apk update && apk add libpq
-COPY --from=builder /usr/src/app/wheels /wheels
-COPY --from=builder /usr/src/app/requirements.txt .
+RUN apk update \
+  && apk add build-base libffi-dev gcc python3-dev musl-dev
+
+COPY ./requirements.txt .
+
 RUN pip install --upgrade pip
-RUN pip install /wheels/*
+RUN pip install -r requirements.txt
 
 # copy entrypoint-prod.sh
 COPY ./entrypoint.sh $APP_HOME
@@ -70,4 +64,4 @@ RUN chown -R app:app $HOME
 USER app
 
 # run entrypoint.prod.sh
-ENTRYPOINT ["/home/app/web/entrypoint.sh"]
+ENTRYPOINT ["/home/app/api/entrypoint.sh"]
