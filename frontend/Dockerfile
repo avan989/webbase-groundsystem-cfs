@@ -16,7 +16,6 @@ COPY ./entrypoint.sh $APP_HOME
 
 # dependencies
 RUN npm install
-RUN npm install react-scripts
 
 # copy project
 ADD . $APP_HOME
@@ -25,10 +24,10 @@ ADD . $APP_HOME
 RUN addgroup -S app && adduser -S app -G app
 
 # chown all the files to the app user
-RUN chown -R app:app $HOME
+#RUN chown -R app:app $HOME
 
 # change to the app user
 #USER app
 
-# run entrypoint.prod.sh
+# run entrypoint.sh
 #ENTRYPOINT ["/home/app/frontend/entrypoint.sh"]
