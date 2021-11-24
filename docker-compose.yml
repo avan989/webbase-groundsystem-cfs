@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.3"
    
 services:
   backend:
@@ -6,11 +6,14 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
-    command: daphne -b 0.0.0.0 -p 8000 backend.asgi:application
+    #command: daphne -b 0.0.0.0 -p 8000 backend.asgi:application
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./api:/home/app/api
     ports:
       - "8000:8000"
+      - "8001:8001/udp"
+      - "1235:1235/udp"
     depends_on:
       - redis
 
@@ -21,8 +24,11 @@ services:
       dockerfile: Dockerfile
     command: yarn start
     #command: tail -f /dev/null
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
     volumes: 
       - ./frontend:/home/app/frontend
+      - /home/app/frontend/node_modules/
     ports:
       - "3000:3000"
     depends_on:
@@ -35,3 +41,11 @@ services:
       - "6379:6379"
     # add config later
 
+  #cfs:
+  #  container_name: cfs
+  #  command: tail -f /dev/null
+  #  build:
+  #    context: ./cfs
+  #    dockerfile: Dockerfile
+
+  

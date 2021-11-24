@@ -1,0 +1,58 @@
+{
+    "no-parm-command": {
+        "packet_version" : 0,
+        "packet_type": 1,
+        "secondary_header": 1,
+        "apid": 0,
+        "sequence_flag": 3,
+        "packet_count": 0,
+        "packet_data_length": 1,
+        "function_code": 0,
+        "checksum": 0
+    },
+    "sample_app" : {
+        "apid" : 130,
+        "num_of_command": 1,
+        "commands": {
+            "noop": {
+                "function_code": 0,
+                "num_parameter": 0
+            },
+            "reset_counters": {
+                "function_code": 1,
+                "num_parameter": 0
+            }
+        }
+    },
+    "to_lab": {
+        "checksum": 0,
+        "packet_version": 0,
+        "packet_type": 1,
+        "secondary_header": 1,
+        "sequence_flag": 3,
+        "apid": 128,
+        "num_of_command": 2,
+        "commands": {
+            "noop": {
+                "function_code": 0,
+                "num_parameter": 0
+            },
+            "enable_telmetry": {
+                "num_parameter": 1,
+                "packet_count": 0,
+                "packet_data_length": 18,
+                "function_code": 6,
+                "parameter_type": ["utf-8"],
+                "parameter_name": ["IP Address"]
+            },
+            "testing": {
+                "num_parameter": 2,
+                "packet_count": 0,
+                "packet_data_length": 18,
+                "function_code": 6,
+                "parameter_type": ["utf-8", "string"],
+                "parameter_name": ["IP Address", "Testing"]
+            }
+        }
+    }  
+}

@@ -1,0 +1,36 @@
+
+.CustomCommandContainer{
+    background-color: rgb(247, 241, 241);
+    height: 550px;
+    width: 90%;
+    margin-top: 20px;
+    padding-right: 10px;
+    border: 1px solid rgb(224, 220, 220);   
+}
+
+.Form{
+    margin: 20px 10px 0px 10px
+}
+
+.Field{
+    margin: 6px !important;
+    height: 35px;
+}
+
+.SendCustomCommandButton{
+    display: block;
+    padding-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.Title{
+    color: black;
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+}

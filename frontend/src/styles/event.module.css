@@ -1,0 +1,11 @@
+.EventTitle{
+    font-size: 18px;
+    font-weight: bolder;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.TitleContainer{
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 10px;
+}

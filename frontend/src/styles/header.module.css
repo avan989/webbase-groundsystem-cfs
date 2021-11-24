@@ -1,0 +1,13 @@
+.HeaderContainer{
+    background-color:#2F4050;
+    width: 100%;
+    height: 65px;
+    float: none;
+    display: inline-block;
+    text-align: center;
+    border-bottom: 1px solid rgb(155, 146, 146);
+}
+
+.Title{
+    color: white;
+}

@@ -1,0 +1,58 @@
+.SettingContainer {
+    height: 100vh;
+    width: 77.77%;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.Title{
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.TitleContainer{
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.FormContainer{
+    background-color: white;
+    height: 90vh;
+    margin-top: 20px;
+    width: 77.77%;
+    display: block;
+    text-align: center;
+    margin-left: 50px;
+}
+
+.Form {
+    margin-left: 20px;
+    width: 600px;
+    margin-top: 30px;
+    display: block;
+    text-align: left;
+    padding-top: 30px;
+}
+
+.FieldRow{
+    margin-bottom: 7px;
+    display: flex;
+}
+
+.FieldName{
+    font-size: 14px;
+    font-weight: bold;
+    width: 150px;
+    padding-top: 15px;
+}
+
+.TextField{
+    width: 400px !important;
+}
+    
+.UpdateButton{
+    display: inline-block;
+    margin-top: 20px;
+    align-items: center;
+    padding-left: 50%;
+}

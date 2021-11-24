@@ -1,23 +1,18 @@
-import React, { useEffect} from 'react';
+import DisplayWindow  from './DisplayWindow';
+import CommandWindow from './CommandWindow';
+import Grid from '@material-ui/core/Grid';
 
 const EventsDisplay = () => {
-
-    useEffect( () => {
-        console.log("This is useeffect");
-        const socketPath = "ws://localhost:8000/websocket"
-
-        const socketGlobal = new WebSocket(socketPath);
-
-        socketGlobal.onopen = (event) => {
-            socketGlobal.onmessage = (evt) => {
-                console.log(evt);
-            }
-        }
-    });
-
     return (
         <div>
-            <h1> This is Event screen </h1>
+            <Grid container spacing={0}>
+                <Grid item md={9}>
+                    <DisplayWindow />
+                </Grid>
+                <Grid item md={3}>
+                    <CommandWindow />
+                </Grid>
+            </Grid>
         </div>
     )
 }

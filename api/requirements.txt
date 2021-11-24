@@ -2,4 +2,5 @@ Django==3.2.8
 channels==3.0.4
 channels-redis==3.3.1
 daphne==3.0.2
-
+django-cors-headers
+numpy

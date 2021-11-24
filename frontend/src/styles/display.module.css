@@ -1,0 +1,22 @@
+.DisplayContainer{
+    display: flex;
+    background-color:#0B0C10;
+    height: 88vh;
+    border-radius: 0.5rem;
+    overflow-y: auto;
+    flex-direction: column-reverse;
+    margin-top: 20px;
+    margin-right: 30px;
+    margin-left: 10px;
+}
+
+.ListItems {
+    color: white;
+    font-size: 13px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding-left: 5px;
+}
+
+.ListItemRow{
+    list-style-type: none;
+}

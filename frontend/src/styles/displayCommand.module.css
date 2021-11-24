@@ -1,0 +1,27 @@
+.CommandContainer{
+    background-color: rgb(247, 241, 241);
+    width: 90%;
+    height: 350px;
+    margin-top: 20px;
+    padding-right: 10px;
+    border: 1px solid rgb(224, 220, 220); 
+    
+}
+
+.Title{
+    color: black;
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.Selection{
+    display: flex;
+    margin: 10px 0 0 30px !important;
+    width: 250px;
+}
+
