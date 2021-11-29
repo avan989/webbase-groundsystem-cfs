@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import {AppDataSend} from '../types/types';
 import {useSelector} from "react-redux";
 import {initStateInter} from "../types/types";
-import {useState, useEffect} from "react"
+import {useState, useEffect, useRef} from "react"
 
 const inputProp: any = {
     style: {fontSize: 12, color: "black"},
@@ -19,10 +19,17 @@ const data: AppDataSend = {
     parameter: {}
 }
 
+
 const httpAddress: string = ""
 
-
 const AppCommand = (prop: any ) => {
+
+    let revealRefs: any= useRef({});
+    let command = {}
+
+    const [address, updateAddress] = useState(httpAddress)
+    const [state, updateState] = useState(data)
+    const [count, updateCount] = useState(0);
 
     const commandParameter = prop.commandDict[prop.application];
     const ipTarget: string = useSelector((state: initStateInter) => {
@@ -32,11 +39,6 @@ const AppCommand = (prop: any ) => {
         return state.portTarget
     })
 
-    const [address, updateAddress] = useState(httpAddress)
-    const [state, updateState] = useState(data)
-
-
-    let command = {}
     
     try {
         command = commandParameter.commands;
@@ -44,6 +46,12 @@ const AppCommand = (prop: any ) => {
     catch(e){
         command = {};
     }
+
+    /*
+    for (const [key, value] of Object.entries(command)) {
+        revealRefs[key] = null;
+    }
+    */
 
     const getNumPara = (value: any): number => {
         return value.num_parameter;
@@ -62,7 +70,7 @@ const AppCommand = (prop: any ) => {
         const element = document.getElementById(parameter.key)
         if(element != undefined)
         {
-            if(element.style.display === "none"){
+            if(element.style.display === "none" || element.style.display === "" ){
                 element.style.display = "block";
             }
             else {
@@ -71,7 +79,6 @@ const AppCommand = (prop: any ) => {
 
             element.style.position = "absolute";
             element.style.opacity = "1";
-            element.style.height = "200px";
         }
     }
 

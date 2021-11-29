@@ -12,15 +12,62 @@
     },
     "sample_app" : {
         "apid" : 130,
-        "num_of_command": 1,
+        "num_of_command": 2,
         "commands": {
-            "noop": {
+            "sample_app_noop": {
                 "function_code": 0,
                 "num_parameter": 0
             },
-            "reset_counters": {
+            "sample_app_reset_counters": {
                 "function_code": 1,
                 "num_parameter": 0
+            }
+        }
+    },
+    "raspberry_app" : {
+        "packet_version" : 0,
+        "packet_type": 1,
+        "secondary_header": 1,
+        "sequence_flag": 3,
+        "checksum": 0,
+        "apid" : 144,
+        "num_of_command": 4,
+        "commands": {
+            "raspberry_app_noop": {
+                "function_code": 0,
+                "num_parameter": 0
+            },
+            "raspberry_app_led_on":{
+                "function_code": 3,
+                "num_parameter": 1,
+                "packet_count": 0,
+                "packet_data_length": 5,
+                "parameter_type": ["uint32"],
+                "parameter_name": ["Pin Number"]
+            },
+            "raspberry_app_led_off": {
+                "function_code": 4,
+                "num_parameter": 1,
+                "packet_count": 0,
+                "packet_data_length": 5,
+                "parameter_type": ["uint32"],
+                "parameter_name": ["Pin Number"]
+            },
+            "raspberry_app_pwm":{
+                "function_code": 5,
+                "num_parameter": 2,
+                "packet_count": 0,
+                "packet_data_length": 9,
+                "parameter_type": ["uint32", "uint32"],
+                "parameter_name": ["Pin Number", "Intensity"]
+            },
+            "raspberry_app_dc_motor": {
+                "function_code": 6,
+                "num_parameter": 6,
+                "packet_count": 0,
+                "packet_data_length": 25,
+                "parameter_type": ["uint32", "uint32", "uint32", "uint32", "uint32", "uint32"],
+                "parameter_name": ["EnablePin", "Enable State", "Input1 Pin", "Input1 State", "Input2Pin", "Input2State"]
             }
         }
     },
@@ -33,11 +80,11 @@
         "apid": 128,
         "num_of_command": 2,
         "commands": {
-            "noop": {
+            "to_lab_noop": {
                 "function_code": 0,
                 "num_parameter": 0
             },
-            "enable_telmetry": {
+            "to_lab_enable_telmetry": {
                 "num_parameter": 1,
                 "packet_count": 0,
                 "packet_data_length": 18,
@@ -45,7 +92,7 @@
                 "parameter_type": ["utf-8"],
                 "parameter_name": ["IP Address"]
             },
-            "testing": {
+            "to_lab_testing": {
                 "num_parameter": 2,
                 "packet_count": 0,
                 "packet_data_length": 18,
@@ -54,5 +101,28 @@
                 "parameter_name": ["IP Address", "Testing"]
             }
         }
-    }  
+    },
+    "time": {
+        "checksum": 0,
+        "packet_version": 0,
+        "packet_type": 1,
+        "secondary_header": 1,
+        "sequence_flag": 3,
+        "apid": 5,
+        "num_of_command": 2,
+        "commands": {
+            "time_noop": {
+                "function_code": 0,
+                "num_parameter": 0
+            },
+            "time_cfe_set_time": {
+                "num_parameter": 2,
+                "packet_count": 0,
+                "packet_data_length": 9,
+                "function_code": 7,
+                "parameter_type": ["uint32", "uint32"],
+                "parameter_name": ["seconds", "subseconds"]
+            }
+        }
+    }
 }

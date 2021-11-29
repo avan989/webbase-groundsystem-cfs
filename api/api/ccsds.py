@@ -15,17 +15,19 @@ class ccsds_decoder():
             - seconds                  6           uint32
             - subseconds               10          uint16
 
+        - spare 4 bytes. Used for 
+
         Packet ID
-            - AppName[20]              12          utf-8
-            - Event ID                 32          uint16
-            - EventType                34          uint16     (1 - Debug, 2- Informational, 3 - Error, 4 - Critical)
-            - Spacecraft ID            36          uint32
-            - Processor ID             40          uint32
+            - AppName[20]              16          utf-8
+            - Event ID                 36          uint16
+            - EventType                38          uint16     (1 - Debug, 2- Informational, 3 - Error, 4 - Critical)
+            - Spacecraft ID            40          uint32
+            - Processor ID             44          uint32
 
         Message
-            - Message[122]             44          utf-8
-            - Spare                    166         uint8
-            - Spare                    167         uint8
+            - Message[122]             48          utf-8
+            - Spare                    170         uint8
+            - Spare                    171         uint8
     """
     def __init__(self):
         pass
@@ -97,7 +99,9 @@ class ccsds_pkt():
 
             if value_type == "utf-8":
                 packet += value.encode('utf-8')
-
+            elif value_type == "uint32":
+                data = np.array([int(value)], dtype="uint32")
+                packet += bytearray(data)
             # to-do handle more type
 
 

@@ -7,7 +7,6 @@ from django.views.decorators.csrf import csrf_exempt
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 
-
 current_path = os.path.dirname(__file__)
 
 # Create your views here.

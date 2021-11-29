@@ -2,11 +2,13 @@
     background-color: #d4d9e0;
     max-width: 1600px;
     height: 100vh;
+    min-height: 1050px;
     margin: 0 auto;
 }
 
 .SideBarGrid{
     height:100vh;
+    min-height: 1050px;
 }
 
 .EventGrid{

@@ -1,0 +1,9 @@
+.Container{
+    height: 100%;
+}
+
+.DisplayContainer {
+    height: 45%;
+    min-height: 350px;
+}
+
